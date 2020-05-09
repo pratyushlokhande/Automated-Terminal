@@ -1,6 +1,6 @@
 import curses
 import time
-
+import os
 
 
 def print_menu(stdscr, selected_row_idx,given_menu):
@@ -69,28 +69,66 @@ def main(stdscr):
     menu_pass=['LOCALLY', 'REMOTELY']
     y=menu_box(stdscr, menu_pass)
     if(y==0):
-        print_center(stdscr,"Please make a choice to proceed further...")
-        time.sleep(3)
-        menu_pass=['BASIC_OPERATIONS','PAKAGE_MANAGENMENT','DISC_MANAGENMENT','NETWORKING','WEBSERVER_MANAGENMENT','FILE_TRANSFER']
-        x=menu_box(stdscr,menu_pass)
-        if(x==0):
-            print_center(stdscr,"Basic Operations")
-            time.sleep(2)
-        elif(x==1):
-            print_center(stdscr, "Pakage Managenment")
-            time.sleep(2)
-        elif(x==2):
-            print_center(stdscr, "Disc Managenment")
-            time.sleep(2)
-        elif(x==3):
-            print_center(stdscr, "Networking")
-            time.sleep(2)
-        elif(x==4):
-            print_center(stdscr, "Webserver Managenment")
-            time.sleep(2)
-        else:
-            print_center(stdscr, "File Transfer")
-            time.sleep(2)
+        check=0
+        while(check==0):
+            z=3
+            while(z==3):
+                print_center(stdscr,"Please make a choice to proceed further...")
+                time.sleep(3)
+                menu_pass=['BASIC_OPERATIONS','PAKAGE_MANAGENMENT','DISC_MANAGENMENT','NETWORKING','WEBSERVER_MANAGENMENT','FILE_TRANSFER','EXIT']
+                x=menu_box(stdscr,menu_pass)
+                if(x==0):
+                    print_center(stdscr,"Basic Operations")
+                    time.sleep(2)
+                elif(x==1):
+                    print_center(stdscr,"How do you want to manage a pakage..??")
+                    time.sleep(2)
+                    menu_pass=['INSTALL_A_PROGRAM','DELETE_A_PROGRAM','SEARCH_A_PROGRAM','BACK']
+                    z=menu_box(stdscr,menu_pass)
+                    if(z==0):
+                        curses.endwin()
+                        os.system("clear")
+                        var=input('Enter the program you want to install : ')
+                        os.system("dnf install {}".format(var))
+                        print_center(stdscr,"Do you want to continue ??")
+                        time.sleep(2)
+                        menu_pass=['YES','NO']
+                        check=menu_box(stdscr,menu_pass)
+                    elif(z==1):
+                        curses.endwin()
+                        os.system("clear")
+                        var=input("Enter the program you want to delete : ")
+                        os.system("dnf remove {}".format(var))
+                        print_center(stdscr,"Do you want to continue ??")
+                        time.sleep(2)
+                        menu_pass=['YES','NO']
+                        check=menu_box(stdscr,menu_pass)
+                    elif(z==2):
+                        curses.endwin()
+                        os.system("clear")
+                        var=input("Enter the program you want to search : ")
+                        os.system("rpm -qa | grep {}".format(var))
+                        print_center(stdscr,"Do you want to continue ??")
+                        time.sleep(2)
+                        menu_pass=['YES','NO']
+                        check=menu_box(stdscr,menu_pass)
+                    else:
+                        print_center(stdscr,"Moving back to previous menu...")
+                        time.sleep(2)
+                elif(x==2):
+                    print_center(stdscr, "Disc Managenment")
+                    time.sleep(2)
+                elif(x==3):
+                    print_center(stdscr, "Networking")
+                    time.sleep(2)
+                elif(x==4):
+                    print_center(stdscr, "Webserver Managenment")
+                    time.sleep(2)
+                elif(x==5):
+                    print_center(stdscr, "File Transfer")
+                    time.sleep(2)
+                else:
+                    exit()
 
     else:
         print_center(stdscr,"You selected remotely")
