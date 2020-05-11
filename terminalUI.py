@@ -75,7 +75,7 @@ def main(stdscr):
             while(z==3):
                 print_center(stdscr,"Please make a choice to proceed further...")
                 time.sleep(3)
-                menu_pass=['BASIC_OPERATIONS','PAKAGE_MANAGENMENT','DISC_MANAGENMENT','NETWORKING','WEBSERVER_MANAGENMENT','FILE_TRANSFER','EXIT']
+                menu_pass=['BASIC OPERATIONS','PAKAGE MANAGENMENT','DISC MANAGENMENT','NETWORKING','WEBSERVER MANAGENMENT','FILE TRANSFER','EXIT']
                 x=menu_box(stdscr,menu_pass)
                 if(x==0):
                     print_center(stdscr,"Basic Operations")
@@ -83,7 +83,7 @@ def main(stdscr):
                 elif(x==1):
                     print_center(stdscr,"How do you want to manage a pakage..??")
                     time.sleep(2)
-                    menu_pass=['INSTALL_A_PROGRAM','DELETE_A_PROGRAM','SEARCH_A_PROGRAM','BACK']
+                    menu_pass=['INSTALL A PROGRAM','DELETE A PROGRAM','SEARCH A PROGRAM','BACK']
                     z=menu_box(stdscr,menu_pass)
                     if(z==0):
                         curses.endwin()
